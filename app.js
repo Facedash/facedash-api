@@ -19,7 +19,7 @@ var conf = {
     client_id:      process.env.APP_ID || 'YOUR-APP-ID',
     client_secret:  process.env.APP_SECRET || 'YOUR-APP-SECRET',
     scope:          'email, user_about_me, friends_about_me, user_birthday, friends_birthday, user_education_history, friends_education_history, user_hometown, friends_hometown, user_interests, friends_interests, user_likes, friends_likes, user_location, friends_location, user_photos, friends_photos, user_relationships, friends_relationships, user_relationship_details, friends_relationship_details, user_work_history, friends_work_history, read_friendlists,user_relationships',
-    redirect_uri:   'http://localhost:3000/auth/facebook'
+    redirect_uri:   process.env.REDIRECT_URI || 'http://localhost:3000/auth/facebook'
     // redirect_uri:   'http://'YOUR PRODUCTION URL'/auth/facebook'
 };
 
