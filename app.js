@@ -55,6 +55,7 @@ app.get('/', routes.index);
  */
 app.get('/profile', profile.info);
 app.get('/auth/facebook', function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
 
   // we don't have a code yet
   // so we'll redirect to the oauth dialog
