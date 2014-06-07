@@ -8,7 +8,7 @@ var util = require('../util/utils.js');
 /* GET users listing. */
 exports.info = function(req, res) {
   //to allow cross origin access
-  res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Origin", "*");
   
   var user = null;
   var infoRequired = '/me/friends?fields=id,name,birthday,hometown,location,education,gender,interested_in,relationship_status,timezone,languages,locale';
