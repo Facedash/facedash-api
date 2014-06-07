@@ -56,11 +56,12 @@ app.use(app.router);
 /**
  * General.
  */
-app.all('/*', function(req, res, next) {
+app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
-});
+ });
+
 app.get('/', routes.index);
 
 /**
@@ -68,7 +69,7 @@ app.get('/', routes.index);
  */
 app.get('/profile', profile.info);
 app.get('/auth/facebook', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Origin", "*");
 
   // we don't have a code yet
   // so we'll redirect to the oauth dialog
