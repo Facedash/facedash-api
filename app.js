@@ -83,7 +83,8 @@ app.get('/auth/facebook', function(req, res) {
     , "code":           req.query.code
   }, function (err, facebookRes) {
     // We redirect to /user 
-    res.redirect('/user');
+    app.get('/user', users.info);
+    //res.redirect('/user');
   });
 });
 
