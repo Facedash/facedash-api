@@ -12,10 +12,10 @@ var bodyParser = require('body-parser');
 // added the fbGraph module here
 var graph = require('fbgraph');
 
-
 // this should really be in a config file!
 // facebook configuration file
 var conf = {
+
     client_id:      process.env.APP_ID || 'YOUR-APP-ID',
     client_secret:  process.env.APP_SECRET || 'YOUR-APP-SECRET',
     scope:          'email, user_about_me, friends_about_me, user_birthday, friends_birthday, user_education_history, friends_education_history, user_hometown, friends_hometown, user_interests, friends_interests, user_likes, friends_likes, user_location, friends_location, user_photos, friends_photos, user_relationships, friends_relationships, user_relationship_details, friends_relationship_details, user_work_history, friends_work_history, read_friendlists,user_relationships',
@@ -26,6 +26,7 @@ var conf = {
 var routes = require('./routes');
 var users = require('./routes/user');
 var profile = require('./routes/profile');
+var info = require('./routes/info');
 
 var app = express();
 
@@ -85,10 +86,20 @@ app.get('/auth/facebook', function(req, res) {
   });
 });
 
+// All information
 app.get('/user', users.info);
 
-///////////////////////////////////////////////////////////////
+// Specific information
+// app.get('/gender', info.gender);
+// app.get('/location', info.location);
+// app.get('/hometown', info.hometown);
+// app.get('/age', info.age);
+// app.get('/relationship', info.relationship);
+// app.get('/me', info.me);
 
+// app.get('/info/:info', info.info);
+
+///////////////////////////////////////////////////////////////
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
