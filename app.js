@@ -81,7 +81,7 @@ app.get('/auth/facebook', function(req, res) {
     , "code":           req.query.code
   }, function (err, facebookRes) {
     // We redirect to /user 
-    res.redirect('/#/user');
+    res.redirect('/user');
   });
 });
 
