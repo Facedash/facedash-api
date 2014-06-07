@@ -23,6 +23,20 @@ var conf = {
     // redirect_uri:   'http://'YOUR PRODUCTION URL'/auth/facebook'
 };
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+
 var routes = require('./routes');
 var users = require('./routes/user');
 var profile = require('./routes/profile');
@@ -44,6 +58,7 @@ app.set('view engine', 'jade');
 //     next();
 // };
 
+app.use(allowCrossDomain);
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -56,13 +71,7 @@ app.use(app.router);
 /**
  * General.
  */
-app.all('/*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
-  next();
-});
+
 
 app.get('/', routes.index);
 
@@ -71,7 +80,7 @@ app.get('/', routes.index);
  */
 app.get('/profile', profile.info);
 app.get('/auth/facebook', function(req, res) {
-    res.header('Access-Control-Allow-Origin', '*');
+    // res.header('Access-Control-Allow-Origin', '*');
 
   // we don't have a code yet
   // so we'll redirect to the oauth dialog
