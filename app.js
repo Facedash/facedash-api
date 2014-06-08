@@ -117,7 +117,7 @@ app.get('/auth/facebook', function(req, res) {
   }, function (err, facebookRes) {
     // We redirect to /user 
     // res.send(users.info);
-    res.redirect('/user');
+    res.redirect('http://127.0.0.1:9000/#/user');
   });
 });
 
